@@ -1,0 +1,1 @@
+cd Users\s9314\Deep-learning\deep-learning-from-scratch-master\ch08
