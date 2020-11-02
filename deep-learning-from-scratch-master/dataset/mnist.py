@@ -148,7 +148,8 @@ def _load_IMG(infection=True):
     cnt = 0
     
     #IM = np.zeros((90,1,99, 99)) #120
-    max_view = 6620   #90
+    max_view = 445
+    section_ratio = 0.7
     IM = np.zeros((max_view,2,99, 99)) #120  
     
     #im_buff = np.zeros((1,1,40, 40))
@@ -176,7 +177,7 @@ def _load_IMG(infection=True):
           im = np.array(cv.cvtColor(im,cv.COLOR_BGR2GRAY));
             
          cv_image = img_as_ubyte(im)                 
-         im = gain*random_noise(cv.equalizeHist(cv_image), mode='gaussian', seed=None, clip=True, var=0.00003)
+         im = gain*random_noise(cv.equalizeHist(cv_image), mode='gaussian', seed=None, clip=True, var=0.00005)
          
          im = np.array(im)         
          #im = im / 255
@@ -203,7 +204,7 @@ def _load_IMG(infection=True):
     #print(dataset_dir)            
     IM = IM.astype(np.float32)
     label = label.astype(np.int)   
-    return (IM[1:5500,:,:,:], label[1:5500]),(IM[5500:max_view,:,:,:], label[5500:max_view]),name,dataset_dir_self
+    return (IM[1:round(section_ratio*max_view),:,:,:], label[1:round(section_ratio*max_view)]),(IM[round(section_ratio*max_view):max_view,:,:,:], label[round(section_ratio*max_view):max_view]),name,dataset_dir_self
 
 
 def load_IMG_files(file_path):

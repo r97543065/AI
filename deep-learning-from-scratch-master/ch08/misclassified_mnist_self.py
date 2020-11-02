@@ -38,7 +38,7 @@ def image_show(im, nx=8, margin=3, scale=10):
 
 last_imageID = ''
 max_file = ''
-mypath = "D:\\Users\\s9314\\Deep-learning\\deep-learning-from-scratch-master\\dataset\\A_self\\testing"
+mypath = "C:\\Users\\s9314\\Desktop\\git_AI\\deep-learning-from-scratch-master\\dataset\\A_self\\testing"
 cnt=0    
 
 
@@ -87,7 +87,7 @@ network2 = DeepConvNet_single(input_dim=(2, 99, 99),
 
 #network1.load_params("deep_convnet_params14.pkl")  
 #network2.load_params("deep_convnet_params15.pkl")  
-network1.load_params("deep_convnet_params_Aphtae_14.pkl")
+network1.load_params("deep_convnet_params_Aphtae_4_14.pkl")
 
 
 img_files = listdir(mypath)
