@@ -149,7 +149,7 @@ def _load_IMG(infection=True):
     
     #IM = np.zeros((90,1,99, 99)) #120
     max_view = 445
-    section_ratio = 0.7
+    section_ratio = 0.8
     IM = np.zeros((max_view,2,99, 99)) #120  
     
     #im_buff = np.zeros((1,1,40, 40))
@@ -177,7 +177,7 @@ def _load_IMG(infection=True):
           im = np.array(cv.cvtColor(im,cv.COLOR_BGR2GRAY));
             
          cv_image = img_as_ubyte(im)                 
-         im = gain*random_noise(cv.equalizeHist(cv_image), mode='gaussian', seed=None, clip=True, var=0.00005)
+         im = gain*random_noise(cv.equalizeHist(cv_image), mode='gaussian', seed=None, clip=True, var=0.0005)
          
          im = np.array(im)         
          #im = im / 255
