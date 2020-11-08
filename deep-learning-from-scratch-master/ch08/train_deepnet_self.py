@@ -47,7 +47,7 @@ network = DeepConvNet(input_dim=(2, 99, 99),
                  )  
 
 trainer = Trainer(network, x_train, t_train, x_test, t_test,
-                  epochs=1000, mini_batch_size=120,#20,  100
+                  epochs=600, mini_batch_size=30,#20,  100
                   optimizer='Adam', optimizer_param={'lr':0.0008},
                   evaluate_sample_num_per_epoch=200)#1000
                     ##### number of iteration = [(total_data/mini_batch_size)->(one epoch)]  *  [epochs]

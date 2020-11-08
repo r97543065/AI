@@ -177,7 +177,7 @@ def _load_IMG(infection=True):
           im = np.array(cv.cvtColor(im,cv.COLOR_BGR2GRAY));
             
          cv_image = img_as_ubyte(im)                 
-         im = gain*random_noise(cv.equalizeHist(cv_image), mode='gaussian', seed=None, clip=True, var=0.0005)
+         im = gain*random_noise(cv.equalizeHist(cv_image), mode='gaussian', seed=None, clip=True, var=0.000005)
          
          im = np.array(im)         
          #im = im / 255
@@ -236,13 +236,13 @@ def load_IMG_files(file_path):
     for col in range(col_sec+1):        
         
         if(col != 4 and col != 5 and col != 6):
-            I = im[ (row)*row_N : ((row+1)*row_N) , (col)*col_N : ((col+1)*col_N) ];
+            I = im[ (row)*row_N-1 : ((row+1)*row_N+1) , (col)*col_N : ((col+1)*col_N) ];
         elif(col == 5):        
-            I = im[ (row)*row_N : ((row+1)*row_N) , (4)*col_N : ((4+1)*col_N) ];            
+            I = im[ (row)*row_N-1 : ((row+1)*row_N+1) , (4)*col_N : ((4+1)*col_N) ];            
         elif(col == 6):        
-            I = im[ (row)*row_N : ((row+1)*row_N) , (5)*col_N : ((5+1)*col_N) ];                        
+            I = im[ (row)*row_N-1 : ((row+1)*row_N+1) , (5)*col_N : ((5+1)*col_N) ];                        
         else:
-            I = im[ (row)*row_N : ((row+1)*row_N) , (col)*col_N-20 : ((col+1)*col_N) ];
+            I = im[ (row)*row_N-1 : ((row+1)*row_N+1) , (col)*col_N-20 : ((col+1)*col_N) ];
                 
         cv_image = img_as_ubyte(I)        
         I = random_noise(cv.equalizeHist(cv_image), mode='gaussian', seed=None, clip=True, var=0.0000001)   

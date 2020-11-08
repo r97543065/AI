@@ -87,7 +87,7 @@ network2 = DeepConvNet_single(input_dim=(2, 99, 99),
 
 #network1.load_params("deep_convnet_params14.pkl")  
 #network2.load_params("deep_convnet_params15.pkl")  
-network1.load_params("deep_convnet_params_Aphtae_4_14.pkl")
+network1.load_params("deep_convnet_params_Aphtae_6_14.pkl")
 
 
 img_files = listdir(mypath)
