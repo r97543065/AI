@@ -148,7 +148,7 @@ def _load_IMG(infection=True):
     cnt = 0
     
     #IM = np.zeros((90,1,99, 99)) #120
-    max_view = 445
+    max_view = 461
     section_ratio = 0.8
     IM = np.zeros((max_view,2,99, 99)) #120  
     

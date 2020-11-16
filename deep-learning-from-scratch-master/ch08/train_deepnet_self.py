@@ -47,13 +47,13 @@ network = DeepConvNet(input_dim=(2, 99, 99),
                  )  
 
 trainer = Trainer(network, x_train, t_train, x_test, t_test,
-                  epochs=600, mini_batch_size=30,#20,  100
-                  optimizer='Adam', optimizer_param={'lr':0.0008},
+                  epochs=300, mini_batch_size=30,#20,  100
+                  optimizer='Adam', optimizer_param={'lr':0.0001},
                   evaluate_sample_num_per_epoch=200)#1000
                     ##### number of iteration = [(total_data/mini_batch_size)->(one epoch)]  *  [epochs]
 
 trainer.train()
 #Adam
 # パラメータの保存
-network.save_params("deep_convnet_params_Aphtae_6_14.pkl")
+network.save_params("deep_convnet_params_Aphtae_6_19.pkl")
 print("Saved Network Parameters!")
