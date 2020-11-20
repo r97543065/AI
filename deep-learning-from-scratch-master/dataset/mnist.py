@@ -208,7 +208,6 @@ def _load_IMG(infection=True):
 
 
 def load_IMG_files(file_path):
-    
     max_F = file_path
     im = imread(file_path)    
     siz = np.shape(im);
@@ -216,8 +215,9 @@ def load_IMG_files(file_path):
     if np.size(siz) == 3:
       im = np.array(cv.cvtColor(im,cv.COLOR_BGR2GRAY));
       
-    im = random_noise(im, mode='gaussian', seed=None, clip=True, var=0.0000001) 
-    
+    im = random_noise(im, mode='gaussian', seed=None, clip=True, var=0.0000001)  
+    #kernel = np.ones((5,5),np.float32)/25
+    #im = cv.GaussianBlur(im,(3,3),0)
 ##############################################    
     row_sec = 3
     col_sec = 6
@@ -227,39 +227,39 @@ def load_IMG_files(file_path):
     row_N = round(siz[0]/row_sec);
     col_N = round(siz[1]/col_sec);
 
-    IM = np.zeros((1*col_sec+1,2,99, 99)) #90
+    IM = np.zeros((1*col_sec+2,2,99, 99)) #90
     cnt = 0;
+    
+    row = 1
     #for row in range(row_sec):
-    row = 1;    
-    
-    
-    for col in range(col_sec+1):        
+    for col in range(col_sec+2):
         
-        if(col != 4 and col != 5 and col != 6):
-            I = im[ (row)*row_N-1 : ((row+1)*row_N+1) , (col)*col_N : ((col+1)*col_N) ];
-        elif(col == 5):        
-            I = im[ (row)*row_N-1 : ((row+1)*row_N+1) , (4)*col_N : ((4+1)*col_N) ];            
-        elif(col == 6):        
-            I = im[ (row)*row_N-1 : ((row+1)*row_N+1) , (5)*col_N : ((5+1)*col_N) ];                        
-        else:
-            I = im[ (row)*row_N-1 : ((row+1)*row_N+1) , (col)*col_N-20 : ((col+1)*col_N) ];
-                
-        cv_image = img_as_ubyte(I)        
-        I = random_noise(cv.equalizeHist(cv_image), mode='gaussian', seed=None, clip=True, var=0.0000001)   
-
-        if(col==2 or col==4 or col == 5) :               
-            I = 1.3*I;
-                                          
+        if(col != 4 and col!=5 and col!=6 and col!=7):
+            I = im[ (row)*row_N : ((row+1)*row_N) , (col)*col_N : ((col+1)*col_N) ];            
+        elif(col==7):
+            I = im[ (row)*row_N : ((row+1)*row_N) , (5)*col_N : ((5+1)*col_N) ];        
+        elif(col==6):
+            I = im[ (row)*row_N : ((row+1)*row_N) , (4)*col_N : ((4+1)*col_N) ];                    
+        elif(col==4):
+            I = im[ (row)*row_N : ((row+1)*row_N) , (4)*col_N-10 : ((4+1)*col_N) ];
+        elif(col==5):
+            I = im[ (row)*row_N : ((row+1)*row_N) , (4)*col_N-15 : ((4+1)*col_N) ];
+            #I = im[ (row)*row_N : ((row+1)*row_N) , (4)*col_N-5 : ((4+1)*col_N) ];
+        if(col==2 or col==4 or col ==5 or col ==7):
+           I = 1.6*I; 
+        
+        #cv_image = img_as_ubyte(I)
+        #I = random_noise(cv.equalizeHist(cv_image), mode='gaussian', seed=None, clip=True, var=0.0000001)
         I = resize(I, (99, 99),anti_aliasing=True)   #99 99
         I_gradient = np.gradient(I);  
         IM[cnt,0,:,:] = I_gradient[1];
         IM[cnt,1,:,:] = I_gradient[0];  
-        cnt = cnt+1;
-    
-                   
-##############################################
+        cnt = cnt+1;    
+##############################################		
     IM = IM.astype(np.float32)    
-    return max_F, (IM[:,:,:,:])    
+    return max_F, (IM[:,:,:,:])	                   
+
+			
     
 def load_IMG_files_single(file_path):
     max_F = file_path

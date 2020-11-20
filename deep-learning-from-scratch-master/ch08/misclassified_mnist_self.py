@@ -38,7 +38,7 @@ def image_show(im, nx=8, margin=3, scale=10):
 
 last_imageID = ''
 max_file = ''
-mypath = "C:\\Users\\s9314\\Desktop\\git_AI\\deep-learning-from-scratch-master\\dataset\\A_self\\testing"
+mypath = "C:\\Users\\s9314\\Desktop\\git_AI\\deep-learning-from-scratch-master\\dataset\\self\\testing"
 cnt=0    
 
 
@@ -85,9 +85,9 @@ network2 = DeepConvNet_single(input_dim=(2, 99, 99),
                  hidden_size1=45, output_size=2, node_size = 63   #63          
                  ) 
 
-#network1.load_params("deep_convnet_params14.pkl")  
+network1.load_params("deep_convnet_params14.pkl")  
 #network2.load_params("deep_convnet_params15.pkl")  
-network1.load_params("deep_convnet_params_Aphtae_6_14.pkl")
+#network1.load_params("deep_convnet_params_Aphtae_6_14.pkl")
 
 
 img_files = listdir(mypath)
@@ -132,6 +132,7 @@ for C in range(np.size(img_files)):
     repeat = 0;
     classified_ids[1] = 0;
     classified_ids[6] = 0;
+    print(classified_ids)
     for i, val in enumerate(classified_ids):    
         mis_pairs[i] = classified_ids[i]     
         if i-1 >= 0:
